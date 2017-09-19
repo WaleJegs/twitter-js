@@ -14,5 +14,4 @@ router.get('/users/:name', function(req, res) {
   res.render( 'index', { tweets: list } );
 });
 
-
 module.exports = router;

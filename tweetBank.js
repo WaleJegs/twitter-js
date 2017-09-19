@@ -3,7 +3,14 @@ const _ = require('lodash');
 let data = [];
 
 function add (name, content) {
-  data.push({ name: name, content: content });
+  let success = false;
+  while (!success) {
+    let currentId = randArrayEl([1,2,3,4,5,6,7,8,9,10]);
+    if (data.every(x => x['id'] !== currentId)) {
+      data.push({ name: name, content: content, id: currentId });
+      success = true;
+    }
+  }
 }
 
 function list () {
@@ -16,7 +23,7 @@ function find (properties) {
   return _.cloneDeep(_.filter(data, properties));
 }
 
-//data.push({ name: "Nimit Ecma", content: "This is a fake tweet"});
+//data.push({ name: "nimit", content: "This is a fake tweet"});
 //let fakeN = "Nimit Ecma";
 
 //find([name=_.fakeN]);
