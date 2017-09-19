@@ -16,10 +16,10 @@ function find ([properties]) {
   return _.cloneDeep(_.filter(data, properties));
 }
 
-data.push({ name: "Nimit Ecma", content: "This is a fake tweet"});
-let fakeN = "Nimit Ecma";
+//data.push({ name: "Nimit Ecma", content: "This is a fake tweet"});
+//let fakeN = "Nimit Ecma";
 
-find([name=_.fakeN]);
+//find([name=_.fakeN]);
 
 module.exports = { add: add, list: list, find: find };
 

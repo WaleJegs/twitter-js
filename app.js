@@ -15,6 +15,7 @@ app.use(function(req, res, next){
 
 const express = require('express');
 const nunjucks = require('nunjucks');
+const routes = require('./routes');
 const app = express();
 const PORT = 3000;
 const counter = 0
@@ -22,11 +23,13 @@ const counter = 0
 //et pokemon = ['pikachu', 'raichu', 'bulbasaur', 'charmander']
 //server.on('request', app)
 
-//app.set('view engine', 'html');
+app.set('view engine', 'html');
 
-//app.engine('html', nunjucks.render);
+app.engine('html', nunjucks.render);
 
-//nunjucks.configure('views');
+nunjucks.configure('views');
+
+app.use('/', routes);
 
 var locals = {
     title: 'An Example',
@@ -45,15 +48,16 @@ nunjucks.configure('views', {
 	express: app
 });
 
-// nunjucks.render('index.html', locals, function (err, output) {
-// 		console.log(err);
-//     console.log(output);
-// });
+/*nunjucks.render('index.html', locals, function (err, output) {
+ 		console.log(err);
+     console.log(output);
+});
+*/
 
 app.listen(PORT, function(){
 	console.log('Example app listening on port 3000!')
 })
-
+/*
 app.use(function(req, res, next){
 	console.log(req.method + " " + req.url + " " + res.statusCode);
 	next();
@@ -79,7 +83,7 @@ app.get("/views", function(req, res){
 app.get("/special", function(req, res){
 	res.send("are you allowed to be here?");
 })
-
+*/
 
 /*
 app.get('/pokemon/:id', function(req, res){
