@@ -5,9 +5,9 @@ let data = [];
 function add (name, content) {
   let success = false;
   while (!success) {
-    let currentId = randArrayEl([1,2,3,4,5,6,7,8,9,10]);
+    let currentId = randArrayEl([1,2,3,4,5,6,7,8,9,10]).toString();
     if (data.every(x => x['id'] !== currentId)) {
-      data.push({ name: name, content: content, id: currentId });
+      data.push({ name: name, content: content, id: currentId.toString() });
       success = true;
     }
   }
