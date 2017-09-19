@@ -13,6 +13,7 @@ app.use(function(req, res, next){
 
 
 const express = require('express');
+const nunjucks = require('nunjucks');
 const app = express();
 const PORT = 3000;
 const counter = 0
@@ -22,6 +23,22 @@ const counter = 0
 
 
 
+var locals = {
+    title: 'An Example',
+    people: [
+        { name: 'Gandalf'},
+        { name: 'Frodo' },
+        { name: 'Hermione'}
+    ]
+};
+nunjucks.configure('views', {
+	noCache: true,
+	express: app
+});
+// nunjucks.render('index.html', locals, function (err, output) {
+// 		console.log(err);
+//     console.log(output);
+// });
 
 app.listen(PORT, function(){
 	console.log('Example app listening on port 3000!')
@@ -37,7 +54,7 @@ app.use("/special/", function(req, res, next){
 	next();
 })
 
-app.get('/', function(req, res,){
+app.get('/', function(req, res){
 	res.send("Hello World!");
 })
 
@@ -45,9 +62,14 @@ app.get("/news", function(req, res){
 	res.send("This is the news");
 })
 
+app.get("/views", function(req, res){
+	res.render('index.html', {title: locals.title, people: locals.people});
+})
+
 app.get("/special", function(req, res){
 	res.send("are you allowed to be here?");
 })
+
 
 /*
 app.get('/pokemon/:id', function(req, res){
@@ -64,7 +86,7 @@ server.on('request', function(request, response){
 	if (request.url === '/pokemon'){
 		response.writeHead(200, {'Content-Type': 'text/plain'})
 		response.end('Welcome to my server ' + pokemon);
-		// my job is to send a response 
+		// my job is to send a response
 		console.log('current count:' + counter)
 		counter ++;
 	} else if (request.url === '/ilikecookies'){
@@ -77,5 +99,5 @@ server.on('request', function(request, response){
 
 server.listen(PORT, function(){
 	console.log('hey dawg, server runnin on port ' + PORT);pokemon
-}) 
+})
 */
