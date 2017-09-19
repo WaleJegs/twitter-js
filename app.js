@@ -12,6 +12,7 @@ app.use(function(req, res, next){
 */
 
 
+
 const express = require('express');
 const nunjucks = require('nunjucks');
 const app = express();
@@ -21,7 +22,11 @@ const counter = 0
 //et pokemon = ['pikachu', 'raichu', 'bulbasaur', 'charmander']
 //server.on('request', app)
 
+//app.set('view engine', 'html');
 
+//app.engine('html', nunjucks.render);
+
+//nunjucks.configure('views');
 
 var locals = {
     title: 'An Example',
@@ -31,10 +36,15 @@ var locals = {
         { name: 'Hermione'}
     ]
 };
+
+const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+
+
 nunjucks.configure('views', {
 	noCache: true,
 	express: app
 });
+
 // nunjucks.render('index.html', locals, function (err, output) {
 // 		console.log(err);
 //     console.log(output);
@@ -63,7 +73,7 @@ app.get("/news", function(req, res){
 })
 
 app.get("/views", function(req, res){
-	res.render('index.html', {title: locals.title, people: locals.people});
+	res.render('index.html', {title: locals.title, people: people});
 })
 
 app.get("/special", function(req, res){
