@@ -12,7 +12,7 @@ function list () {
 
 //[name="Nimit Ecma"]
 
-function find ([properties]) {
+function find (properties) {
   return _.cloneDeep(_.filter(data, properties));
 }
 

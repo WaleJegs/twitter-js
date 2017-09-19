@@ -31,6 +31,8 @@ nunjucks.configure('views');
 
 app.use('/', routes);
 
+app.use(express.static('public'));
+
 var locals = {
     title: 'An Example',
     people: [
@@ -53,7 +55,9 @@ nunjucks.configure('views', {
      console.log(output);
 });
 */
-
+// app.get('/public/stylesheets', function(req, res, next){
+// 	res.sendFile('/Users/aenlorien/Desktop/Programming/Fullstack/Repos/Junior Phase/twitter-js/public/stylesheets/style.css');
+// })
 app.listen(PORT, function(){
 	console.log('Example app listening on port 3000!')
 })
